@@ -1,4 +1,4 @@
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
+const BACKEND_URL = process.env.BACKEND_URL || "https://medicines-backend.utkarshahuja.tech";
 
 /**
  * Searches for medicines based on the query.
