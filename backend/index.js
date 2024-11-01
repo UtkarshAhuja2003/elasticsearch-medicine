@@ -1,31 +1,17 @@
-const fs = require('fs');
-const csv = require('csv-parser');
-const { Client } = require('@elastic/elasticsearch');
+const express = require('express');
+const cors = require('cors');
+const { uploadCSV } = require('./controllers/upload.controller');
+const { searchMedicines } = require('./controllers/search.controller');
 
-const client = new Client({
-    node: process.env.ELASTICSEARCH_URL,
-    auth: {
-      apiKey: process.env.ELASTICSEARCH_API_KEY
-    },
-  });
-const indexName = 'medicines';
+const app = express();
+const PORT = process.env.PORT || 8000;
 
-async function uploadCSV() {
-  const results = [];
+app.use(cors());
+app.use(express.json());
 
-  fs.createReadStream('../data/medicine_data.csv')
-    .pipe(csv())
-    .on('data', (data) => results.push(data))
-    .on('end', async () => {
-      for (const row of results) {
-        await client.index({
-          index: indexName,
-          body: row,
-        });
-      }
-      await client.indices.refresh({ index: indexName });
-      console.log('Data upload complete!');
-    });
-}
+app.post('/upload', uploadCSV);
+app.get('/search', searchMedicines);
 
-uploadCSV().catch(console.error);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
