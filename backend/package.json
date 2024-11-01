@@ -1,0 +1,25 @@
+{
+  "name": "elasticsearch-medicine",
+  "version": "1.0.0",
+  "description": "Handle elasticsearch",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UtkarshAhuja2003/elasticsearch-medicine.git"
+  },
+  "author": "UtkarshAhuja2003",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UtkarshAhuja2003/elasticsearch-medicine/issues"
+  },
+  "homepage": "https://github.com/UtkarshAhuja2003/elasticsearch-medicine#readme",
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.15.1",
+    "csv-parser": "^3.0.0",
+    "fs": "^0.0.1-security"
+  }
+}
